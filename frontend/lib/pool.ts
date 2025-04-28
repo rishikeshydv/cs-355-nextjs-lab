@@ -1,5 +1,7 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+
+//load environment variables from .env file
 dotenv.config();
 const pool = new Pool({
   host: process.env.NEXT_PUBLIC_POSTGRES_HOST || 'localhost',
