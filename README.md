@@ -21,8 +21,6 @@
 - [ ] Input
 - [ ] Label
 - [ ] Card
-- [ ] Alert
-- [ ] Checkbox
 
 ## 3rd Party Libraries
 - [ ] pg (npm i --save-dev @types/pg)
