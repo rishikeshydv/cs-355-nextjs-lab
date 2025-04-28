@@ -22,10 +22,10 @@ export default function AuthPage() {
             <TabsTrigger value="signup">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="login">
-            <LoginForm onSuccess={() => console.log("Login successful")} />
+            <LoginForm />
           </TabsContent>
           <TabsContent value="signup">
-            <SignupForm onSuccess={() => setActiveTab("login")} />
+            <SignupForm setActiveTab={setActiveTab} />
           </TabsContent>
         </Tabs>
       </div>

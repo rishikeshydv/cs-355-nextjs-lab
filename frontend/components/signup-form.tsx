@@ -10,9 +10,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
 
 interface SignupFormProps {
-  onSuccess: () => void
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>
 }
-export function SignupForm({ onSuccess }: SignupFormProps) {
+export function SignupForm({ setActiveTab }: SignupFormProps) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -104,7 +104,7 @@ export function SignupForm({ onSuccess }: SignupFormProps) {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
       // Call onSuccess callback
-      onSuccess()
+      setActiveTab("login")
     } catch (error) {
         console.log(error)
       setError("An error occurred during signup. Please try again.")

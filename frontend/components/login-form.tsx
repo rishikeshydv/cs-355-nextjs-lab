@@ -8,11 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
 
-interface LoginFormProps {
-  onSuccess: () => void
-}
-
-export function LoginForm({ onSuccess }: LoginFormProps) {
+export function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
@@ -62,9 +58,6 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      // Call onSuccess callback
-      onSuccess()
     } catch (error) {
         console.log(error)
       setError("Invalid email or password. Please try again.")
