@@ -1,7 +1,7 @@
 ## CS 355 Lab Instruction
 - [ ] [Extremely Short and Quick Intro to NextJS](https://nextjs.org/)
 - [ ] NextJS Installation
-- [ ] ShadCN  
+- [ ] [Intro to ShadCN](https://ui.shadcn.com/)
 - [ ] Lucide React Icons
 - [ ] Frontend (using React Form)  
 - [ ] Backend  
@@ -23,4 +23,8 @@
 - [ ] Card
 - [ ] Alert
 - [ ] Checkbox
+
+## 3rd Party Libraries
+- [ ] pg (npm i --save-dev @types/pg)
+- [ ] bcrypt (npm i --save-dev @types/bcrypt)
 
