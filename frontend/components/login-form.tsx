@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
-
+import axios from "axios"
 export function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -53,11 +53,15 @@ export function LoginForm() {
     setError(null)
 
     try {
-      // This is where you would normally call your authentication API
-      console.log("Login data:", { email, password })
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // interact with database
+      const response = await axios.post("/api/v1/login", {
+        email,
+        password,
+      })
+      if (response.data.message="Login Successful"){
+        alert("You're logged in.")
+      }
     } catch (error) {
         console.log(error)
       setError("Invalid email or password. Please try again.")

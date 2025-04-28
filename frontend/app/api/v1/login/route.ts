@@ -11,7 +11,6 @@ export async function POST(req: Request) {
     const res = await CheckCredentials(
         { email, password } as LoginCredentials
     )
-    
     if (res === "Login Successful") {
         return NextResponse.json({ message: "Login Successful" });
       } else {
