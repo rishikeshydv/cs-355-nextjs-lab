@@ -57,7 +57,7 @@ async function SaveCredentials(credentials: SignupUser): Promise<string> {
 
     await pool.query(
       `INSERT INTO users (name, email, password)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+       VALUES ($1, $2, $3)`,
       [
         credentials.name,
         credentials.email,

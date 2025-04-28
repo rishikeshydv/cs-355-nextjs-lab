@@ -6,9 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Checkbox } from "@/components/ui/checkbox"
 import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
-
+import axios from "axios"
 interface SignupFormProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>
 }
@@ -17,13 +16,11 @@ export function SignupForm({ setActiveTab }: SignupFormProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [terms, setTerms] = useState(false)
   const [errors, setErrors] = useState<{
     name?: string
     email?: string
     password?: string
     confirmPassword?: string
-    terms?: string
   }>({})
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -36,7 +33,6 @@ export function SignupForm({ setActiveTab }: SignupFormProps) {
       email?: string
       password?: string
       confirmPassword?: string
-      terms?: string
     } = {}
     let isValid = true
 
@@ -76,12 +72,6 @@ export function SignupForm({ setActiveTab }: SignupFormProps) {
       isValid = false
     }
 
-    // Terms validation
-    if (!terms) {
-      newErrors.terms = "You must agree to the terms and conditions"
-      isValid = false
-    }
-
     setErrors(newErrors)
     return isValid
   }
@@ -98,10 +88,15 @@ export function SignupForm({ setActiveTab }: SignupFormProps) {
 
     try {
       // This is where you would normally call your registration API
-      console.log("Signup data:", { name, email, password, terms })
+      console.log("Signup data:", { name, email, password })
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      //save to database
+      const response = await axios.post("/api/v1/signup", {
+        name,
+        email,
+        password,
+      })
+      console.log("Response:", response.data.message)
 
       // Call onSuccess callback
       setActiveTab("login")
@@ -191,22 +186,6 @@ export function SignupForm({ setActiveTab }: SignupFormProps) {
             {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword}</p>}
           </div>
 
-          <div className="flex items-start space-x-2">
-            <Checkbox id="terms" checked={terms} onCheckedChange={(checked) => setTerms(checked as boolean)} />
-            <div className="grid gap-1.5 leading-none">
-              <Label htmlFor="terms" className="text-sm font-normal leading-snug text-gray-600">
-                I agree to the{" "}
-                <a href="#" className="font-medium text-primary underline">
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a href="#" className="font-medium text-primary underline">
-                  Privacy Policy
-                </a>
-              </Label>
-              {errors.terms && <p className="text-sm text-red-500">{errors.terms}</p>}
-            </div>
-          </div>
         </CardContent>
 
         <CardFooter>
